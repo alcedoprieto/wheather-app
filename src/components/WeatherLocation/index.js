@@ -3,7 +3,7 @@ import Location from './Location';
 import WeatherData from './WeatherData';
 
 const WeatherLocation = () => (
-    <div>
+    <div className="weatherLocationCont">
         <Location city={"Mérida Ven"} />
         <WeatherData />
     </div>

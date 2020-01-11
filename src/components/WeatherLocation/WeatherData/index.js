@@ -6,7 +6,7 @@ import {
 } from './../../../constans/weathers';
 
 const WeatherData = () => (
-    <div>
+    <div className="weatherDataCont">
         <WeatherTemperature 
             temperature={25} 
             weatherState={SUN}
