@@ -3,7 +3,7 @@ import convert from  'convert-units';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import {
-    CLOUD, CLOUDY, SUN, RAIN, SNOW, WINDY,
+      SUN,   
 } from './../../constans/weathers';
 
 const location = "Merida,VE";
@@ -11,19 +11,13 @@ const api_key = "64c1322414d12d2866ee1a5414a9a29d";
 const url_base_weather = "http://api.openweathermap.org/data/2.5/weather";
 const api_weather = `${url_base_weather}?q=${location}&appid=${api_key}`;
 
-const data = {
-	temperature: 35,
-	weatherState: SUN,
-	humidity: 13,
-	wind: '10 m/s',
-}
 
 class WeatherLocation extends Component {
     constructor(){
         super();
         this.state = {
-            city: 'Guayaquil',
-            data: data,
+            city: 'Mérida',
+            data: null,
         };
     }
     getTemp = kelvin => {
@@ -74,8 +68,7 @@ class WeatherLocation extends Component {
         return (
             <div className="weatherLocationCont">
                 <Location city={city}></Location>
-                <WeatherData data = {data}></WeatherData>
-                <button onClick={this.handleUpdateClick}>Actualizar</button>
+                { data ? <WeatherData data = {data}></WeatherData> : "Cargando..." }
             </div>
         );
     }
