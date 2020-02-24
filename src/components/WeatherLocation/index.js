@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import PropTypes from 'prop-types';
+import getUrlWeatherByCity from './../../services/getUrlWeatherByCity';
 import convert from  'convert-units';
 import Location from './Location';
 import WeatherData from './WeatherData';
@@ -9,16 +10,16 @@ import {
 } from './../../constans/weathers';
 
 const location = "Merida,VE";
-const api_key = "64c1322414d12d2866ee1a5414a9a29d";
-const url_base_weather = "http://api.openweathermap.org/data/2.5/weather";
-const api_weather = `${url_base_weather}?q=${location}&appid=${api_key}`;
+
 
 
 class WeatherLocation extends Component {
+
     constructor(props){
         super(props);
         const { city } = props;
         this.state = {
+            city,
             data: null,
         };
     }
@@ -53,6 +54,7 @@ class WeatherLocation extends Component {
     }
 
     handleUpdateClick = () => {
+      const api_weather = getUrlWeatherByCity(this.state.city);
     	fetch(api_weather).then( resolver => {
         return resolver.json();
       }).then(data => {
