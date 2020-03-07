@@ -60,7 +60,7 @@ class WeatherLocation extends Component {
       }).then(data => {
         console.log(data);
         this.setState({
-            city: "Mérida VE",
+            city: this.state.city,
             data: this.getData(data),
         });
       });
