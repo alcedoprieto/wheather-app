@@ -3,7 +3,7 @@ import WeatherIcons from 'react-weathericons';
 import PropTypes from 'prop-types';
 
 import {
-    CLOUD, CLOUDY, SUN, RAIN, SNOW, WINDY,
+    CLOUD, CLOUDY, SUN, RAIN, SNOW, THUNDER, DRIZZLE,
 } from './../../../constans/weathers';
 
 const icons = {
@@ -12,9 +12,10 @@ const icons = {
     [SUN]: "day-sunny",
     [RAIN]: "rain",
     [SNOW]: "snow",
-    [WINDY]: "windy",
-}
-const getWeatherIcons =weatherState => {
+    [THUNDER]: "thunder",
+    [DRIZZLE]: "drizzle",
+};
+const getWeatherIcons = weatherState => {
     const icon = icons[weatherState];
     const sizeIcon =  "4x";
     if (icon)

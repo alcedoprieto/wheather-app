@@ -6,12 +6,8 @@ import convert from  'convert-units';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import {
-      SUN,
+  CLOUD, CLOUDY, SUN, RAIN, SNOW, THUNDER, DRIZZLE,
 } from './../../constans/weathers';
-
-const location = "Merida,VE";
-
-
 
 class WeatherLocation extends Component {
 
@@ -26,13 +22,39 @@ class WeatherLocation extends Component {
     getTemp = kelvin => {
       return Number(convert(kelvin).from("K").to("C").toFixed(2));
     }
-    getWeatherState = weather_data => {
-      return SUN;
-    }
+    
+    getWeatherState = weather => {
+      const { id } = weather;
+      switch (true) {
+          case (id < 233):
+              return THUNDER;
+              break;
+          case (id < 322):
+              return DRIZZLE;
+              break;
+          case (id < 532):
+              return RAIN;
+              break;
+          case (id < 623):
+              return SNOW;
+              break;
+          case (id < 782):
+              return CLOUDY;
+              break;
+          case (id === 800):
+          return SUN;
+              break;
+          case (id < 805):
+              return CLOUD;
+              break;
+      }
+      
+  }
     getData = weather_data => {
       const { humidity,temp } = weather_data.main;
       const { speed } = weather_data.wind;
-      const weatherState = this.getWeatherState(weather_data);
+      console.log(weather_data.weather[0]);
+      const weatherState = this.getWeatherState(weather_data.weather[0]);
       const temperature = this.getTemp(temp);
 
       const data = {
