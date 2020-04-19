@@ -11,10 +11,15 @@ const cities = [
   'Lima,pe',
 ];
 class App extends Component {
+  hanldleWeatherLocationClick = city => {
+    console.log("hanldleWeatherLocationClick");
+  }
   render() {
     return (
       <div className="App">
-      <LocationList cities={cities}></LocationList>
+      <LocationList 
+        cities={cities}
+        onSelectedLocation={this.hanldleWeatherLocationClick}></LocationList>
       </div>
     )
   }
